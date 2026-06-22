@@ -1,6 +1,7 @@
 from flask import Flask, render_template_string
 from models.models import db, User, Post
 from werkzeug.security import generate_password_hash
+from controllers.controllers import controllers
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///milestone1.sqlite'
@@ -8,6 +9,7 @@ app.config['SECRET_KEY'] = 'milestone1_secret_key'
 
 
 db.init_app(app)
+app.register_blueprint(controllers)
 
 
 def create_admin_user():

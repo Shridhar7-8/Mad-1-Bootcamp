@@ -8,6 +8,7 @@ class User(db.Model):
     username = db.Column(db.String(50), nullable=False, unique=True)
     email = db.Column(db.String(120), nullable=False, unique=True)
     password = db.Column(db.String(200), nullable=False)
+    status = db.Column(db.String(50), nullable=False, default='approved') # aprroved, pending and blacklisted
     posts = db.relationship('Post', backref = "author", lazy = True, cascade = 'all, delete-orphan')
     roles = db.Column(db.String(50), nullable=False, default='user')
 
